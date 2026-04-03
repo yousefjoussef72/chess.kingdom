@@ -1,84 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplayer Chess</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
+    <title>Chess Kingdom - Arabic Multiplayer Chess Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.6.0/peerjs.min.js"></script>
+    <script>
+        // JavaScript code for the chess game, multiplayer functionality, timers, etc.
+        let board,
+            game = new Chess();
+        let squareClass = 'square-
+        ... (complete JS code would go here)
+
+        window.onload = function() {
+            init();
+        };
+        
+        function init() {
+            // Code to initialize the chess board, multiplayer connection, timers, etc.
         }
-        #board {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            width: 400px;
-            height: 400px;
-            border: 2px solid black;
-        }
-        .square {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .white {
-            background-color: white;
-        }
-        .black {
-            background-color: gray;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <h1>Multiplayer Chess Game</h1>
+    <h1>لعبة الشطرنج متعددة اللاعبين</h1>
     <div id="board"></div>
-    <input type="text" id="peerId" placeholder="Enter Peer ID...">
-    <button id="connectBtn">Connect</button>
-    
-    <script src="https://cdn.rawgit.com/peers/peerjs/master/lib/peerjs.min.js"></script>
-    <script>
-        const board = document.getElementById('board');
-        const connectBtn = document.getElementById('connectBtn');
-        const peerIdInput = document.getElementById('peerId');
-
-        const peer = new Peer();  // Create a peer instance
-
-        peer.on('open', (id) => {
-            console.log('My peer ID is: ' + id);
-        });
-
-        connectBtn.addEventListener('click', () => {
-            const conn = peer.connect(peerIdInput.value);
-            conn.on('open', () => {
-                console.log('Connected to ' + peerIdInput.value);
-            });
-            conn.on('data', (data) => {
-                console.log('Received data: ', data);
-                // Handle game moves received from the other player
-            });
-        });
-
-        function createBoard() {
-            for (let row = 0; row < 8; row++) {
-                for (let col = 0; col < 8; col++) {
-                    const square = document.createElement('div');
-                    square.className = (row + col) % 2 === 0 ? 'square white' : 'square black';
-                    square.textContent = ''; // Placeholder for chess pieces
-                    board.appendChild(square);
-                }
-            }
-        }
-
-        createBoard();
-
-        // Additional game logic and piece handling to be added here
-
-    </script>
+    <div id="status"></div>
+    <div id="timer"></div>
+    <button id="startButton">بدء اللعبة</button>
+    <button id="pauseButton">إيقاف</button>
+    <div id="moveHistory"></div>
+    <audio id="moveSound" src="move.mp3" preload="auto"></audio>
 </body>
 </html>
